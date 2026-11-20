@@ -1,0 +1,473 @@
+/* Civili'k 0.2 · identidad visual de Camachin (kk digital studio) · ver diseno/LEEME_Programator.txt y la guía.
+   Cómic medieval: contorno tinta, «labio» inferior en botones, pergamino de fondo. 1 dp = 1 px. Fuentes OFL en fuentes/. */
+@font-face { font-family: 'Grenze'; src: url(../fuentes/Grenze/Grenze-Bold.ttf) format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Alegreya Sans'; src: url(../fuentes/AlegreyaSans/AlegreyaSans-Regular.ttf) format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Alegreya Sans'; src: url(../fuentes/AlegreyaSans/AlegreyaSans-Bold.ttf) format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Alegreya Sans'; src: url(../fuentes/AlegreyaSans/AlegreyaSans-ExtraBold.ttf) format('truetype'); font-weight: 800; font-display: swap; }
+[hidden] { display: none !important; }
+:root {
+  --tinta: #2B1D14; --pergamino: #F4E7C9; --pergamino-oscuro: #E3CFA0; --madera: #7A4E2D; --granate: #9B2C2C; --granate-oscuro: #6E1E1E;
+  --oro: #E8A93A; --oro-oscuro: #B9781B; --bosque: #386F35; --pizarra: #2F5D7C; --ambar: #E07A1F; --rojo-aviso: #B3261E; --noche: #2E2620;
+  --hierba: #93B860; --hierba-oscura: #6F9443; --camino: #CFAE72; --borde-camino: #A8854E; --plaza: #D9C79E; --tierra: #D8BF8A; --agua: #5FA3C9;
+  --sub: #5A4636; --tarjeta: #FBF3E0; --f-info: #DCE7EF; --f-exito: #DDEBD6; --f-alerta: #FBE6CC; --f-error: #F8DCD5; --desh: #DDD2BB; --desh-texto: #6E6253;
+  --titulos: 'Grenze', Georgia, serif; --texto: 'Alegreya Sans', system-ui, sans-serif; --teclado: 0px;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; background: var(--pergamino); color: var(--tinta); font: 400 16px/1.4 var(--texto); overscroll-behavior: none; }
+body { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); user-select: none; -webkit-user-select: none; }
+button { font: inherit; color: inherit; }
+img { -webkit-user-drag: none; }
+h1, h2, h3 { font-family: var(--titulos); font-weight: 700; margin: 0; line-height: 1.15; }
+h1 { font-size: 26px; } h2 { font-size: 22px; margin: 0 0 6px; } h3 { font-size: 20px; margin: 0 0 6px; }
+p { margin: 6px 0; }
+.sub { color: var(--sub); font-size: 14px; } .pequeno { font-size: 13px; } .centro { text-align: center; }
+.solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.fila { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.ico { display: inline-block; width: 20px; height: 20px; flex: none; background-color: currentColor; -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; }
+
+/* ---------- Botones: alto 48, radio 12, borde 2,5 tinta, labio 4; pulsado baja 3 y pierde el labio ---------- */
+.btn { --labio: var(--pergamino-oscuro); display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 48px; padding: 8px 16px; border-radius: 12px;
+  border: 2.5px solid var(--tinta); background: var(--pergamino); color: var(--tinta); font: 700 16px/1.1 var(--texto); cursor: pointer; box-shadow: 0 4px 0 var(--labio), 0 4px 0 2.5px var(--tinta);
+  margin-bottom: 6px; transition: transform .05s; }
+.btn:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 var(--labio); }
+.btn.principal, .btn.primario { background: var(--granate); color: var(--pergamino); --labio: var(--granate-oscuro); }
+.btn.secundario { background: var(--pergamino); color: var(--tinta); --labio: var(--pergamino-oscuro); }
+.btn.oro { background: var(--oro); color: var(--tinta); --labio: var(--oro-oscuro); }
+.btn.peligro { background: var(--f-error); color: var(--rojo-aviso); --labio: #E9BDB3; }
+.btn:disabled { background: var(--desh); color: var(--desh-texto); border-color: var(--desh); box-shadow: none; cursor: default; transform: none; }
+.btn.ancho { width: 100%; }
+.btn.barra { min-height: 40px; padding: 4px 14px; }
+.btn.pequeno { min-height: 48px; padding: 4px 12px; font-size: 15px; }
+.btn-icono { width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center; background: none; border: 0; border-radius: 12px; cursor: pointer; color: var(--tinta); }
+.btn-icono .ico { width: 24px; height: 24px; }
+
+/* ---------- Páginas (inicio, acerca) ---------- */
+#pantalla { min-height: 100%; }
+.pagina { padding: 16px; max-width: 640px; margin: 0 auto; }
+.portada { text-align: center; padding: 8px 0 12px; }
+.logo-inicio { width: min(78%, 330px); height: auto; display: block; margin: 8px auto 4px; }
+.logo-acerca { width: min(62%, 260px); height: auto; display: block; margin: 8px auto; }
+.lema { font-size: 16px; margin: 4px 0 0; }
+.titulo-seccion { font-size: 22px; margin: 22px 0 8px; }
+.tarjeta { background: var(--tarjeta); border: 2.5px solid var(--tinta); border-radius: 14px; padding: 10px 12px; margin: 10px 0; box-shadow: 0 4px 0 rgba(43,29,20,.25); }
+.tarjeta-clara { background: var(--tarjeta); border: 2px solid var(--tinta); border-radius: 12px; padding: 10px 12px; margin: 10px 0; }
+.partida { display: flex; gap: 10px; align-items: center; }
+.partida .datos { flex: 1; min-width: 0; } .partida .nombre { font: 700 19px/1.15 var(--titulos); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.partida .acciones { display: flex; flex-direction: column; gap: 4px; align-items: stretch; }
+.mini { position: relative; width: 60px; height: 60px; flex: none; }
+.mini img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cabecera-pagina { display: flex; align-items: center; gap: 4px; margin: -4px 0 4px -8px; } .cabecera-pagina h2 { margin: 0; }
+.panel { background: var(--pergamino); border: 2.5px solid var(--tinta); border-radius: 16px; padding: 16px; margin: 12px 0 18px; position: relative;
+  box-shadow: inset 0 0 0 5px var(--pergamino), inset 0 0 0 6.2px var(--oro), 0 4px 0 rgba(43,29,20,.3); }
+.version { font: 700 17px var(--texto); } .creador { font: 700 24px/1.1 var(--titulos); color: var(--granate); margin: 0 0 8px; }
+
+/* ---------- Partida: barra superior 60 dp noche ---------- */
+.juego { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+.barra-juego { display: flex; align-items: center; gap: 8px; min-height: 60px; padding: 6px 12px; background: var(--noche); color: var(--pergamino); }
+.barra-juego .btn { margin-bottom: 4px; }
+.barra-juego .titulo { flex: 1; min-width: 0; font: 700 19px/1.1 var(--titulos); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.btn-velocidad { width: 64px; height: 40px; border-radius: 20px; border: 2.5px solid var(--tinta); display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 0 6px;
+  font: 800 18px/1 var(--texto); cursor: pointer; background: var(--pergamino); color: var(--tinta); box-shadow: 0 3px 0 var(--pergamino-oscuro); margin: 4px 0; flex: none; }
+.btn-velocidad .ico { width: 18px; height: 18px; }
+.btn-velocidad.v2 { background: var(--oro); box-shadow: 0 3px 0 var(--oro-oscuro); }
+.btn-velocidad.v3 { background: var(--granate); color: var(--pergamino); box-shadow: 0 3px 0 var(--granate-oscuro); }
+.btn-velocidad.pausa { background: var(--desh); color: var(--desh-texto); box-shadow: none; }
+.btn-velocidad.pausa .ico { display: none; }
+.estado-juego { font: 700 13px var(--texto); padding: 5px 10px; border-radius: 14px; background: var(--bosque); color: var(--pergamino); white-space: nowrap; }
+.estado-juego.pausa { background: #6E6253; color: var(--pergamino); }
+/* Barra de recursos: pergamino oscuro, radio 14, rejilla 4 + 3 */
+.recursos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px 6px; margin: 10px 12px 6px; padding: 8px 10px; background: var(--pergamino-oscuro); border: 2.5px solid var(--tinta); border-radius: 14px; }
+.recurso { display: flex; align-items: flex-start; gap: 5px; min-width: 0; line-height: 1.1; }
+.recurso .ico-rec { width: 26px; height: 26px; flex: none; margin-top: 1px; }
+.rec-txt { display: flex; flex-direction: column; min-width: 0; }
+.recurso b { font: 800 17px/1.1 var(--texto); }
+.recurso .salvo { color: var(--sub); font-size: 12px; white-space: nowrap; }
+.recurso .ritmo { color: var(--bosque); font: 700 12px var(--texto); } .recurso .ritmo.neg { color: var(--rojo-aviso); }
+.recurso:nth-child(5) { grid-column: 1; }
+/* Pestañas Ciudad / Mapa: 44 dp, activa noche con icono oro */
+.pestanas { display: flex; gap: 8px; padding: 4px 12px 8px; }
+.pestana { flex: 1; height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 12px; border: 2.5px solid var(--tinta);
+  background: var(--pergamino); color: var(--tinta); font: 700 16px var(--texto); cursor: pointer; }
+.pestana.activa { background: var(--noche); color: var(--pergamino); } .pestana.activa .ico { background-color: var(--oro); }
+.zona { flex: 1; min-height: 0; overflow: auto; padding: 0 12px 10px; }
+
+/* ---------- Ciudad cenital (0.1.1): asentamiento continuo dentro de un marco; se desliza y se acerca/aleja ---------- */
+.zona-ciudad { display: flex; flex-direction: column; overflow: hidden; }
+.ciudad-barra { display: flex; align-items: center; gap: 8px; padding: 0 0 4px; }
+.ciudad-barra .btn { margin: 0 0 4px; flex: none; }
+.ciudad-barra .btn.zoom { width: 48px; padding: 0; font-size: 22px; }
+#btn-construir { padding: 4px 12px; }
+.huecos-texto { flex: 1; color: var(--sub); font-size: 13px; line-height: 1.2; }
+.ciudad-vista { flex: 1; min-height: 0; overflow: auto; border: 3px solid var(--tinta); border-radius: 16px; background: var(--hierba);
+  -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-x pan-y; display: flex; }
+.ciudad { position: relative; margin: auto; flex: none; background-color: var(--hierba); isolation: isolate; }
+/* 0.2 · terreno de Camachin pintado en canvas (celdas de 32 dp, rejilla dual); los edificios van encima y se tocan */
+.ciudad canvas.terreno, .mapa-zona canvas.terreno { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+.hueco { position: absolute; cursor: pointer; }   /* sin z-index: el velo de los modos queda entre los edificios y los overlays */
+.hueco.bloqueado { cursor: default; }
+/* Asiento 120 dp centrado y 4 dp más abajo; 0.3: skin de Camachin a 96 dp (el dibujo trae su margen); nivel en círculo pergamino 18 dp abajo a la derecha */
+.hueco .asiento { position: absolute; left: -12.5%; top: calc(-12.5% + 4px * var(--z)); width: 125%; height: 125%; pointer-events: none; z-index: 1; }
+.hueco .edif { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.hueco .nivel { position: absolute; right: -3px; bottom: -3px; min-width: 18px; height: 18px; padding: 0 2px; border-radius: 9px; background: var(--pergamino); border: 2px solid var(--tinta);
+  font: 800 12px/14px var(--texto); text-align: center; color: var(--tinta); pointer-events: none; z-index: 3; box-sizing: border-box; }
+/* Modos: velo noche 22 % sobre la ciudad (no sobre la UI) + overlays de 96 dp (seleccionado 100 dp) */
+.velo-modo { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+.hueco .modo { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 6; animation: aparece .18s ease-out; }
+.hueco .modo.hueco_seleccionado { inset: -2.083%; width: 104.167%; height: 104.167%; }
+.hueco.moviendo .edif { z-index: 8; transform: translateY(calc(-10px * var(--z))) scale(1.04); }
+.hueco.moviendo .nivel { z-index: 8; transform: translateY(calc(-10px * var(--z))); }
+.hueco .sombra-levantado { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 7; }
+@keyframes aparece { from { opacity: 0; } to { opacity: 1; } }
+.zona-ciudad { position: relative; }
+.banda-modo { position: absolute; left: 15px; right: 15px; bottom: 16px; height: 50px; border-radius: 14px; background: var(--noche); color: var(--pergamino); z-index: 10;
+  display: flex; align-items: center; gap: 8px; padding: 0 6px 0 14px; font: 600 15px var(--texto); box-shadow: 0 4px 0 rgba(43,29,20,.35); }
+.banda-modo span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.banda-modo .btn { margin: 0; flex: none; }
+/* Mapa (0.2): zona de 21×21 casillas alrededor de la ciudad, para recorrer */
+.mapa-vista { background: var(--pergamino); }
+.mapa-zona { position: relative; margin: auto; flex: none; }
+.mapa-nombre { position: absolute; transform: translate(-50%, 0); background: var(--pergamino); border: 2px solid var(--tinta); border-radius: 10px; padding: 1px 10px;
+  font: 700 15px/1.3 var(--titulos); white-space: nowrap; pointer-events: none; box-shadow: 0 3px 0 rgba(43,29,20,.3); }
+/* Mapa del territorio (solo para ver) */
+.mapa-caja { max-width: 560px; margin: 0 auto; }
+.marco-mapa { border: 3px solid var(--tinta); border-radius: 16px; overflow: hidden; background: var(--pergamino); }
+.mapa { width: 100%; aspect-ratio: 1; display: block; image-rendering: pixelated; }
+.leyenda { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; margin-top: 8px; } .leyenda i { display: inline-block; width: 14px; height: 14px; border: 1.5px solid var(--tinta); border-radius: 3px; vertical-align: -2px; margin-right: 4px; }
+.leyenda i.cap { background: var(--granate); box-shadow: inset 0 0 0 3px var(--oro); }
+
+/* ---------- Hojas y diálogos: pergamino, borde tinta 2,5, filete oro, radio 16 (hoja 22, asa 50×5), fondo noche 55–65 % ---------- */
+#velo { position: fixed; inset: 0; background: rgba(46,38,32,.6); z-index: 20; }
+.hoja-inferior { position: fixed; left: 0; right: 0; bottom: 0; z-index: 21; background: var(--pergamino); border: 2.5px solid var(--tinta); border-bottom: 0; border-radius: 22px 22px 0 0; max-height: 82vh; overflow: auto;
+  padding: 6px 16px calc(16px + env(safe-area-inset-bottom) + var(--teclado)); box-shadow: inset 0 5px 0 0 var(--pergamino), inset 0 6.2px 0 0 var(--oro), 0 -4px 0 rgba(43,29,20,.2); }
+.hoja-asa { width: 50px; height: 5px; border-radius: 3px; background: var(--tinta); opacity: .5; margin: 6px auto 10px; }
+.hoja-cabecera { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; } .hoja-cabecera > div:first-child:not(.mini) { flex: 1; min-width: 0; }
+.hoja-cabecera h2 { margin: 0; }
+.opcion-edif { display: flex; gap: 10px; align-items: center; }
+.opcion-edif .datos { flex: 1; min-width: 0; } .opcion-edif .sub { font-size: 13px; }
+.nombre-edif { font: 700 20px/1.1 var(--titulos); }
+.opcion-edif .btn { flex: none; padding: 8px 12px; }
+.motivo { color: var(--rojo-aviso); font-size: 13px; font-weight: 700; margin-top: 2px; }
+.coste, .coste-iconos { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 3px; }
+.coste-item { display: inline-flex; align-items: center; gap: 3px; } .coste-item b { font: 700 14px var(--texto); }
+.ico-coste { width: 20px; height: 20px; }
+.acciones-edif .btn { flex: 1; min-width: 0; padding: 8px 10px; }
+.menu-lista { display: grid; gap: 6px; margin-top: 8px; }
+#dialogo-capa { position: fixed; inset: 0; z-index: 40; background: rgba(46,38,32,.65); display: flex; align-items: center; justify-content: center; padding: 20px; }
+.dialogo { width: 100%; max-width: 420px; margin: 0; }
+.dialogo input { width: 100%; font: 400 16px var(--texto); padding: 10px 12px; border: 2.5px solid var(--tinta); border-radius: 12px; margin: 8px 0; background: var(--tarjeta); color: var(--tinta); user-select: text; -webkit-user-select: text; }
+.dialogo .botones { display: flex; gap: 10px; justify-content: flex-end; margin-top: 12px; flex-wrap: wrap; }
+.tut-cabecera { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.tut-dibujo { position: relative; width: 56px; height: 56px; flex: none; } .tut-dibujo img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tut-dibujo.destacado { border-radius: 12px; box-shadow: 0 0 0 4px var(--oro), 0 0 0 6px var(--tinta); }
+.tutorial .paso { font-size: 13px; color: var(--sub); }
+.tut-puntos { display: flex; gap: 6px; margin-top: 10px; } .tut-puntos i { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--tinta); }
+.tut-puntos i.activo { background: var(--granate); }
+
+/* ---------- Avisos: tarjeta arriba, banda izquierda 10 dp + icono 24, se cierran a ~4 s ---------- */
+#toast { pointer-events: none; position: fixed; left: 12px; right: 12px; top: calc(8px + env(safe-area-inset-top)); margin: 0 auto; max-width: 480px; min-height: 68px; z-index: 50;
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 20px; border: 2.5px solid var(--tinta); border-radius: 12px; overflow: hidden; background: var(--f-alerta); box-shadow: 0 4px 0 rgba(43,29,20,.3); }
+.toast-banda { position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--ambar); }
+.toast-ico { width: 24px; height: 24px; color: var(--ambar); }
+.toast-txt b { display: block; font: 700 16px/1.2 var(--texto); } .toast-txt div { font-size: 14px; }
+.toast.info { background: var(--f-info); } .toast.info .toast-banda { background: var(--pizarra); } .toast.info .toast-ico { color: var(--pizarra); }
+.toast.exito { background: var(--f-exito); } .toast.exito .toast-banda { background: var(--bosque); } .toast.exito .toast-ico { color: var(--bosque); }
+.toast.error { background: var(--f-error); } .toast.error .toast-banda { background: var(--rojo-aviso); } .toast.error .toast-ico { color: var(--rojo-aviso); }
+/* Aviso automático «Actualizar» (kk-actualizador): tarjeta info */
+.aviso-actualizacion { position: relative; margin: 8px 12px 0; padding: 10px 12px 6px 20px; background: var(--f-info); border: 2.5px solid var(--tinta); border-radius: 12px; overflow: hidden;
+  display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.aviso-actualizacion::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--pizarra); }
+.kk-act-botones { display: flex; gap: 8px; } .kk-act-notas, .kk-act-estado { font-size: 14px; color: var(--sub); }
+
+/* ===== 0.3 · parte militar (estilo 0.1/0.2: pergamino, contorno tinta, granate y oro) ===== */
+.ico-pestana { width: 22px; height: 22px; }
+.banners-militar { display: flex; flex-direction: column; gap: 6px; padding: 0 12px; }
+.banners-militar:empty { display: none; }
+.banner-mil { display: flex; align-items: center; gap: 8px; background: var(--pergamino); border: 2.5px solid var(--tinta); border-radius: 12px; padding: 4px 6px 4px 8px; font-size: 14px; margin-bottom: 6px; }
+.banner-mil span { flex: 1; min-width: 0; } .banner-mil.crisis { background: #F3D6C8; border-color: var(--granate); }
+.ico-banner { width: 30px; height: 30px; flex: none; }
+.ico-mil { width: 40px; height: 40px; flex: none; } .ico-mil.grande { width: 56px; height: 56px; }
+.ejercito h3, .hoja h3 { font: 700 20px/1.1 var(--titulos); margin: 14px 0 6px; }
+.lista-mil { display: flex; flex-direction: column; gap: 6px; }
+.fila-mil { display: flex; align-items: center; gap: 10px; background: var(--pergamino); border: 2px solid var(--tinta); border-radius: 12px; padding: 6px 10px; text-align: left; font: inherit; color: var(--tinta); }
+.fila-mil.boton { cursor: pointer; width: 100%; } .fila-mil .datos { flex: 1; min-width: 0; } .fila-mil .sub { font-size: 13px; }
+.fila-mil.bloqueada { opacity: .55; } .fila-mil .cuenta { font: 800 22px/1 var(--titulos); min-width: 32px; text-align: right; }
+.chip { flex: none; font-size: 12px; font-weight: 800; border: 2px solid var(--tinta); border-radius: 999px; padding: 1px 8px; background: var(--bosque); color: var(--pergamino); }
+.chip.herido { background: var(--granate); } .chip.inactivo { background: #8A857B; }
+.opcion-mil { display: flex; align-items: center; gap: 10px; } .opcion-mil .datos { flex: 1; min-width: 0; } .opcion-mil.hecho { opacity: .7; }
+.paso-num { display: flex; align-items: center; gap: 4px; flex: none; } .paso-num b { min-width: 34px; text-align: center; }
+.mini-btn { padding: 6px 10px; min-height: 40px; min-width: 40px; }
+.fila-check { display: flex; align-items: center; gap: 10px; cursor: pointer; } .fila-check input { width: 22px; height: 22px; flex: none; }
+.fuerzas { display: flex; justify-content: space-around; text-align: center; } .fuerzas > div { display: flex; flex-direction: column; }
+.fuerzas .grande { font: 800 32px/1.1 var(--titulos); }
+.resultado.victoria h2 { color: var(--bosque); } .resultado.derrota h2 { color: var(--granate); }
+.leyenda i.mon { background: var(--granate); border-radius: 50%; }
+.lista-heroes-tipo { display: flex; flex-direction: column; gap: 6px; margin: 6px 0; } .tipo-heroe { display: flex; gap: 8px; align-items: center; text-align: left; } .tipo-heroe .sub { font-size: 12px; }
+.dialogo.elegir-heroe .botones { flex-wrap: wrap; } .dialogo.elegir-heroe .botones .btn { flex: 1 1 45%; }
+.ejercito { padding-bottom: 16px; }
+.dialogo.elegir-heroe { max-height: 92vh; overflow: auto; }
+
+/* ===== 0.3 · gráficos de Camachin (LEEME_Programator_0.3) ===== */
+.mapa-zona { isolation: isolate; }   /* los sprites ordenados por Y no pasan por encima de hojas ni diálogos */
+.mapa-zona .sprite { position: absolute; padding: 0; border: none; background: none; }
+.mapa-zona button.sprite { cursor: pointer; } .mapa-zona div.sprite { pointer-events: none; }
+.mapa-zona .img-sprite { width: 100%; height: 100%; display: block; }
+.mapa-zona .nivel-sprite { position: absolute; right: 2%; top: 2%; min-width: 22px; height: 22px; border-radius: 50%; background: var(--pergamino); border: 2px solid var(--tinta);
+  font: 800 12px/18px var(--texto); text-align: center; color: var(--tinta); box-sizing: border-box; padding: 0 2px; }
+.marco-retrato { flex: none; border-radius: 12px; overflow: hidden; }
+.retrato-76 { width: 76px; height: 76px; display: block; } .retrato-68 { width: 68px; height: 68px; display: block; } .retrato-48 { width: 48px; height: 48px; flex: none; }
+.retrato-44 { width: 44px; height: 44px; flex: none; } .retrato-36 { width: 36px; height: 36px; flex: none; }
+.chips { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+.chip-poder { background: var(--granate); color: var(--pergamino); border-radius: 999px; padding: 3px 12px; font-weight: 800; font-size: 14px; border: 2px solid var(--tinta); }
+.botin-posible { margin: 10px 0; } .botin-posible .coste { margin-top: 4px; }
+.fila-titulo { display: flex; align-items: center; gap: 6px; margin: 12px 0 6px; border-top: 1.5px solid var(--pergamino-oscuro); padding-top: 8px; }
+.fila-titulo .chip-prevision { margin-left: auto; }
+.fila-ataque { display: flex; align-items: center; gap: 10px; padding: 4px 0; } .fila-ataque .datos { flex: 1; min-width: 0; }
+.fila-ataque .sub.ventaja { color: var(--bosque); font-weight: 700; } .fila-ataque .sub.desventaja { color: var(--granate); font-weight: 700; }
+.chip-prevision { border-radius: 999px; padding: 3px 12px; font-weight: 800; font-size: 14px; border: 2px solid var(--tinta); color: var(--pergamino); background: #8A857B; }
+.chip-prevision.bien { background: var(--bosque); } .chip-prevision.mal { background: var(--granate); } .chip-prevision.duda { background: var(--oro); color: var(--tinta); }
+.botones-ataque { display: flex; gap: 10px; margin-top: 12px; position: sticky; bottom: 0; background: var(--pergamino); padding: 8px 0 4px; }
+.botones-ataque .btn { flex: 1; }
+#dialogo-capa.capa-resultado { background: rgba(43, 29, 20, .65); }
+.dialogo.resultado-combate { max-height: 94vh; overflow: auto; border: 3px solid var(--tinta); box-shadow: inset 0 0 0 3px var(--oro); padding-top: 0; }
+.cinta { position: relative; height: 80px; margin: 0 -8px 8px; display: flex; align-items: center; justify-content: center; }
+.cinta .img-cinta { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.cinta h2 { position: relative; font: 900 30px/1 var(--titulos); margin: 0 0 8px; } .cinta.victoria h2 { color: var(--oro); } .cinta.derrota h2 { color: var(--pergamino); }
+.res-enemigo { display: flex; gap: 12px; align-items: center; }
+.chip-res { display: inline-block; margin-top: 4px; border-radius: 999px; padding: 2px 12px; font-weight: 800; color: var(--pergamino); border: 2px solid var(--tinta); }
+.chip-res.bien { background: var(--bosque); } .chip-res.mal { background: #C0392B; }
+.res-bloque { margin-top: 12px; } .res-bloque h3 { margin: 0 0 6px; font: 700 20px/1.1 var(--titulos); }
+.res-cab, .res-fila { display: grid; grid-template-columns: 1fr 64px 56px; align-items: center; gap: 6px; } .res-cab span { font-size: 12px; text-align: center; color: #5E5A55; }
+.res-fila { grid-template-columns: 36px 1fr 64px 56px; padding: 3px 0; } .res-fila b { text-align: center; } .res-fila .caidas { color: #C0392B; }
+.casillas { display: flex; gap: 8px; flex-wrap: wrap; }
+.casilla { width: 52px; height: 60px; border: 2px solid var(--tinta); border-radius: 10px; background: var(--tarjeta, #FBF3DF); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+.casilla b { color: var(--bosque); font-size: 13px; } .ico-casilla { width: 28px; height: 28px; }
+.res-heroe { display: flex; gap: 10px; align-items: center; } .res-heroe .datos { flex: 1; min-width: 0; } .res-heroe .fila { justify-content: space-between; } .res-heroe .exp { color: var(--bosque); }
+.barra-exp { height: 10px; border: 2px solid var(--tinta); border-radius: 999px; background: var(--pergamino-oscuro); overflow: hidden; margin: 3px 0; } .barra-exp i { display: block; height: 100%; background: var(--oro); }
+.dialogo.resultado-combate .botones { flex-direction: column; } .dialogo.resultado-combate .botones .btn { width: 100%; }
+
+/* ===== 0.5 · interfaz (barra compacta, pestañas solo icono, Máx, academia, inventario, misiones, estadísticas, mapa del mundo) ===== */
+.recursos.compacta { grid-template-columns: repeat(4, 1fr); gap: 2px 6px; margin: 6px 12px 4px; padding: 4px 8px; border-radius: 12px; }
+.recursos.compacta .recurso { align-items: center; gap: 4px; } .recursos.compacta .ico-rec { width: 20px; height: 20px; margin: 0; }
+.recursos.compacta .recurso b { font: 800 14px/1.1 var(--texto); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.recursos.compacta .recurso:nth-child(5) { grid-column: auto; }
+.pestanas { gap: 5px; padding: 2px 12px 6px; }
+.pestana { min-width: 0; height: 42px; padding: 0; gap: 0; }
+.pestana .ico-pestana, .pestana .ico { width: 24px; height: 24px; }
+.pestana-envoltura { flex: 1; position: relative; display: flex; min-width: 0; } .pestana-envoltura .pestana { flex: 1; }
+.globo { position: absolute; top: -5px; right: -3px; min-width: 18px; height: 18px; border-radius: 999px; background: var(--granate); color: var(--pergamino); font: 800 11px/14px var(--texto); text-align: center; border: 2px solid var(--tinta); padding: 0 3px; pointer-events: none; }
+.btn.solo-icono { padding: 4px 10px; min-width: 44px; justify-content: center; gap: 0; }
+.btn-max { flex: none; width: 48px; height: 44px; padding: 0; border: none; background: none; cursor: pointer; } .btn-max:disabled { cursor: default; }
+.btn-max .img-max { width: 100%; height: 100%; display: block; object-fit: contain; }
+.acciones-edif { flex-wrap: wrap; align-items: center; }
+/* Tarjetas de «Entrenar tropas» */
+.tarjeta-entrenar { display: flex; flex-direction: column; gap: 6px; } .tarjeta-entrenar.no .ent-cab b { opacity: .75; }
+.ent-cab { display: flex; align-items: center; gap: 8px; } .ent-cab b { flex: 1; min-width: 0; font-size: 16px; }
+.clase-chip { flex: none; font-size: 12px; font-weight: 800; border: 2px solid var(--tinta); border-radius: 999px; padding: 1px 8px; background: var(--pergamino-oscuro); }
+.ent-datos { display: flex; flex-wrap: nowrap; gap: 4px 10px; align-items: center; font-size: 13px; overflow-x: auto; white-space: nowrap; } .ent-datos .coste { margin: 0 0 0 auto; flex-wrap: nowrap; }
+.ent-pie { justify-content: flex-end; flex-wrap: wrap; } .ent-pie .cantidad { min-width: 40px; text-align: center; font-size: 18px; }
+/* Árbol de la Academia */
+.rama { margin: 8px 0 12px; } .rama-titulo { display: block; font: 700 18px/1.1 var(--titulos); margin-bottom: 6px; color: var(--granate); }
+.nodo-hab { display: flex; align-items: center; gap: 8px; margin: 0 0 6px calc(var(--prof, 0) * 18px); position: relative; } .nodo-hab .datos { flex: 1; min-width: 0; }
+.nodo-hab::before { content: ''; position: absolute; left: -12px; top: -8px; width: 10px; height: 26px; border-left: 2px solid var(--tinta); border-bottom: 2px solid var(--tinta); border-radius: 0 0 0 6px; opacity: calc(var(--prof, 0) * 1); }
+.nodo-hab.no { opacity: .7; } .nodo-hab.hecho { background: #E6EED8; }
+.niveles-hab { display: flex; gap: 3px; margin: 3px 0; } .niveles-hab i { width: 14px; height: 8px; border: 1.5px solid var(--tinta); border-radius: 3px; background: var(--pergamino-oscuro); } .niveles-hab i.on { background: var(--oro); }
+/* Inventario, misiones y estadísticas */
+.inventario .fila-mil .cuenta { font-size: 18px; min-width: 44px; }
+.mision { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; } .mision .datos { flex: 1; min-width: 0; } .mision.hecho { opacity: .6; } .mision.lista { border-color: var(--bosque); box-shadow: inset 0 0 0 2px var(--oro); }
+.tabla-est { display: flex; flex-direction: column; border: 2px solid var(--tinta); border-radius: 12px; overflow: hidden; background: var(--pergamino); }
+.fila-est { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 6px; align-items: center; padding: 5px 10px; border-top: 1px solid var(--pergamino-oscuro); font-size: 14px; }
+.fila-est:first-child { border-top: none; } .fila-est.cab { font-size: 12px; color: var(--sub); } .fila-est .nom { display: flex; align-items: center; gap: 4px; }
+.fila-est.dos { grid-template-columns: 1fr auto; } .fila-est .ritmo { color: var(--bosque); font-weight: 700; } .fila-est .ritmo.neg { color: var(--rojo-aviso); }
+.duraciones { flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0; }
+/* Mapa del mundo (100×100 casillas de 48 dp, terreno en trozos de canvas; pellizco) */
+.mapa-vista { touch-action: pan-x pan-y; background: #C9B98F; overscroll-behavior: contain; }
+.mapa-zona .mundo-terreno { pointer-events: none; } .mapa-zona .mundo-terreno canvas.trozo { display: block; }
+.mapa-zona .capa-sprites { position: absolute; inset: 0; }
+.mapa-zona .sprite.ocupada .img-sprite, .mapa-zona .sprite.derrotada .img-sprite { opacity: .85; }
+.mapa-zona .chip-sprite { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); white-space: nowrap; background: var(--noche); color: var(--pergamino); font: 700 11px/1 var(--texto); border-radius: 999px; padding: 3px 6px; border: 1.5px solid var(--tinta); }
+.mapa-zona .mapa-nombre { position: absolute; transform: translate(-50%, 0); white-space: nowrap; background: var(--pergamino); border: 2px solid var(--tinta); border-radius: 999px; padding: 2px 10px; font: 700 13px var(--titulos); pointer-events: none; z-index: 99999 !important; left: 0; top: 0; }
+.leyenda i.enem { background: #3E2F5E; } .leyenda i.zon { background: var(--oro); border-radius: 50%; }
+.marco-retrato.enemiga { background: #3E2F5E; } .ico-escudo { width: 28px; height: 28px; }
+.sube-nivel { color: var(--bosque); font-weight: 800; }
+.ent-datos .coste-iconos { flex-wrap: nowrap; margin: 0; gap: 4px 8px; } .ent-datos .coste { margin-top: 0; }
+
+/* ===================== 0.6 ===================== */
+/* Clásica: botón de modo en la barra (sin acelerador) */
+.btn-velocidad.clasica { background: var(--pergamino); cursor: default; }
+.btn-velocidad .ico-modo { width: 22px; height: 22px; }
+.btn-velocidad.clasica.pausa .ico-modo { opacity: .5; }
+/* Selector de modo al crear partida (maqueta 04) */
+.selector-modo { display: grid; gap: 10px; margin: 6px 0 10px; }
+.tarjeta-modo { display: flex; align-items: center; gap: 10px; text-align: left; padding: 10px; border: 2.5px solid var(--tinta); border-radius: 14px; background: var(--tarjeta, #FBF3DF); color: var(--tinta); cursor: pointer; font: inherit; min-height: 64px; position: relative; }
+.tarjeta-modo.activa { border-color: var(--oro-oscuro); box-shadow: 0 0 0 3px var(--oro); }
+.tarjeta-modo .datos { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.tarjeta-modo .datos b { font: 700 20px/1.1 var(--titulos); }
+.tarjeta-modo .sub { font-size: 13px; }
+.ico-modo-grande { width: 48px; height: 48px; flex: none; }
+.modo-check { width: 32px; height: 32px; flex: none; align-self: flex-start; }
+.modo-partida { font-weight: 700; }
+/* Filtros del mapa (maqueta 02) */
+.filtros-mapa { display: flex; align-items: center; gap: 6px; margin: 0 0 6px; flex-wrap: wrap; }
+.chip-filtro { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 4px 10px; border-radius: 12px; border: 2px solid var(--tinta); background: var(--pergamino); color: #8A7B68; font: 700 14px var(--texto); cursor: pointer; }
+.chip-filtro.on { background: var(--noche); color: var(--pergamino); }
+.chip-filtro .ico-filtro { width: 24px; height: 24px; }
+.mapa-zona.sin-zonas .zona-farmeo, .mapa-zona.sin-monstruos .monstruo, .mapa-zona.sin-enemigos .ciudad-enemiga { display: none; }
+.marca-diplomacia { position: absolute; right: -6px; top: -6px; width: 22px !important; height: 22px !important; background: var(--pergamino); border: 2px solid var(--tinta); border-radius: 50%; padding: 1px; box-sizing: border-box; }
+.ciudad-enemiga.conquistada .img-sprite { filter: hue-rotate(-40deg) saturate(1.3); }
+.ciudad-enemiga.en-guerra { outline: 3px dashed var(--rojo-aviso); outline-offset: 2px; border-radius: 50%; }
+.marcha-mapa { position: absolute; transform: translate(-50%, -100%); z-index: 9999; pointer-events: none; }
+.marcha-chip { display: inline-block; background: var(--granate); color: var(--pergamino); border: 2px solid var(--tinta); border-radius: 10px; padding: 1px 6px; font: 800 12px var(--texto); white-space: nowrap; }
+/* Diplomacia en la hoja de ataque */
+.diplomacia { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
+.chip-diplo { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 12px; border: 2px solid var(--tinta); font: 700 14px var(--texto); }
+.chip-diplo.guerra { background: var(--rojo-aviso); color: var(--pergamino); } .chip-diplo.paz { background: var(--pergamino-oscuro); }
+.btn.verde { background: var(--bosque); color: var(--pergamino); --labio: #24481F; }
+/* Muralla en la ciudad: piezas de 32 dp sobre las casillas de la ciudad */
+.capa-muralla { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.pieza-muralla, .defensa-ciudad { position: absolute; pointer-events: auto; cursor: pointer; user-select: none; -webkit-user-drag: none; }
+.defensa-ciudad { z-index: 3; }
+/* Tienda (maqueta 03) */
+.tienda-cab { display: flex; align-items: center; gap: 8px; } .tienda-cab h3 { margin: 0; flex: 1; font: 700 24px var(--titulos); }
+.ico-tienda { width: 32px; height: 32px; }
+.chip-provisional { background: var(--granate); color: var(--pergamino); border-radius: 12px; padding: 3px 10px; font: 800 11px var(--texto); text-transform: uppercase; }
+.titulo-tienda { color: var(--granate); font: 700 18px var(--titulos); margin: 14px 0 6px; }
+.rejilla-tienda { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; }
+.tarjeta-tienda { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; padding: 8px 6px; border: 2px solid var(--tinta); border-radius: 12px; background: var(--pergamino-oscuro); font-size: 13px; }
+.tarjeta-tienda .sub { font-size: 11px; line-height: 1.2; }
+.tarjeta-tienda.no { opacity: .7; }
+.ico-tienda-item { width: 48px; height: 48px; }
+.tarjeta-tienda .precio { margin-top: auto; width: 100%; }
+.sel-recurso { display: flex; gap: 4px; flex-wrap: wrap; margin: 4px 0 8px; }
+.btn-rec { width: 44px; height: 44px; border-radius: 10px; border: 2px solid var(--tinta); background: var(--pergamino); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.btn-rec.on { background: var(--oro); box-shadow: 0 0 0 2px var(--tinta); }
+/* Efectos de pociones activos y misión grande */
+.banner-mil.efectos { flex-wrap: wrap; gap: 6px; }
+.efecto-chip { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; background: var(--pergamino); border: 1.5px solid var(--tinta); border-radius: 10px; padding: 2px 8px; }
+.mision.grande { border-width: 3px; border-color: var(--oro-oscuro); box-shadow: 0 0 0 3px var(--oro); }
+.chip.fuera { background: var(--pizarra); color: var(--pergamino); }
+.pestanas { gap: 4px; padding: 2px 8px 6px; }
+
+/* ---------- 0.7 ---------- */
+/* Hojas (Salón de héroes y demás): nunca más altas que la pantalla visible y con margen abajo para la barra de navegación de Android */
+.hoja-inferior { max-height: min(82vh, calc(100dvh - 48px)); overscroll-behavior: contain;
+  padding-bottom: calc(28px + max(env(safe-area-inset-bottom), 16px) + var(--teclado)); }
+/* Mapa: filtros (solo icono) y zoom en una línea; sin leyenda ni nota → la vista ocupa todo el alto */
+.barra-mapa { gap: 6px; }
+.barra-mapa .filtros-mapa { flex: 1; margin: 0 0 4px; flex-wrap: nowrap; min-width: 0; }
+.chip-filtro.solo-icono { width: 48px; min-width: 48px; height: 44px; padding: 0; justify-content: center; }
+.chip-filtro.solo-icono .ico-filtro { width: 28px; height: 28px; }
+.zona-ciudad.zona { padding-bottom: 6px; }
+.mapa-marco { position: relative; flex: 1; min-height: 0; display: flex; }
+.mapa-marco > .mapa-vista { flex: 1; }
+/* Recuadro de marchas sobre el mapa */
+.recuadro-marchas { position: absolute; left: 8px; top: 8px; z-index: 30; max-width: calc(100% - 16px); max-height: 40%; overflow: auto; display: flex; flex-direction: column; gap: 4px;
+  background: rgba(244, 233, 210, .94); border: 2px solid var(--tinta); border-radius: 12px; padding: 6px 8px; box-shadow: 0 3px 0 rgba(43,29,20,.3); font-size: 13px; }
+.fila-marcha { display: flex; align-items: center; gap: 8px; }
+.fila-marcha .txt-marcha { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.15; }
+.fila-marcha .txt-marcha b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fila-marcha .tiempo-marcha { font-variant-numeric: tabular-nums; color: var(--granate); font-weight: 800; }
+.fila-marcha .btn { margin: 0; min-height: 40px; flex: none; }
+/* Flecha de marcha y tropas avanzando */
+.flecha-marcha { position: absolute; height: 0; border-top: 4px dashed var(--granate); transform-origin: 0 50%; pointer-events: none; margin-top: -2px; opacity: .9; }
+.flecha-marcha.vuelta { border-top-color: var(--noche); }
+.flecha-marcha.recogida { border-top-color: var(--oro-oscuro, #9A7B1F); }
+.flecha-marcha .punta { position: absolute; right: -2px; top: -10px; width: 0; height: 0; border-left: 14px solid var(--granate); border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+.flecha-marcha.vuelta .punta { border-left-color: var(--noche); }
+.flecha-marcha.recogida .punta { border-left-color: var(--oro-oscuro, #9A7B1F); }
+.sprite.tropas-marcha { pointer-events: none; z-index: 900 !important; }
+.chip-marcha { left: 50%; transform: translateX(-50%); }
+.fila-pocion { display: flex; align-items: center; gap: 10px; } .fila-pocion .txt { flex: 1; display: flex; flex-direction: column; } .fila-pocion.no { opacity: .7; }
+/* Tarjetas de entrenar: el coste en su línea (se ajusta, nunca se corta) y deslizador de cantidad */
+.ent-coste { display: flex; flex-wrap: wrap; margin: 0; } .ent-coste .coste-iconos { flex-wrap: wrap; gap: 4px 10px; }
+.btn-cantidad { min-width: 48px; min-height: 40px; border: 2px dashed var(--tinta); border-radius: 10px; background: var(--pergamino); font: 800 18px var(--texto); color: var(--tinta); cursor: pointer; padding: 0 6px; }
+.btn-cantidad.on { background: var(--oro); border-style: solid; }
+.deslizador-tropa { display: flex; align-items: center; gap: 8px; }
+.deslizador-tropa .deslizador { flex: 1; min-height: 40px; accent-color: var(--granate); }
+.tropa-estrellas { outline: 2px solid var(--oro); outline-offset: 1px; border-radius: 6px; }
+/* Skins grandes (nv30 y nv40: 4×4 casillas, 128 dp) centradas en el hueco de 96 dp; ocupan la calle de alrededor, no otros huecos */
+.hueco.grande .edif { left: -16.667%; top: -16.667%; width: 133.333%; height: 133.333%; }
+.hueco.grande .asiento { left: -22.917%; top: calc(-22.917% + 4px * var(--z)); width: 145.833%; height: 145.833%; }
+/* Informes */
+.filtros-informes { gap: 6px; margin: 6px 0 8px; flex-wrap: wrap; }
+.lista-informes { display: flex; flex-direction: column; gap: 6px; }
+.informe { border-left-width: 6px; } .informe.bien { border-left-color: #3E8E3E; } .informe.mal { border-left-color: var(--granate); } .informe.info { border-left-color: var(--noche); }
+.informe.nuevo { box-shadow: 0 0 0 2px var(--oro); }
+.informe-cab { display: flex; gap: 8px; align-items: baseline; } .informe-cab b { flex: 1; min-width: 0; } .informe-fecha { white-space: nowrap; font-size: 12px; }
+
+/* ===== 0.8 ===== */
+/* bug 0.7: el icono de conquistada / en guerra tapaba el número de nivel (los dos arriba a la derecha): el icono pasa arriba a la IZQUIERDA */
+.marca-diplomacia { right: auto; left: -6px; top: -6px; }
+.mapa-zona .sprite.capital { cursor: pointer; }
+.mapa-zona .sprite.legendario .img-sprite { filter: drop-shadow(0 0 6px #7B4FC9); }
+.mapa-zona .sprite.legendario .nivel-sprite { background: #7B4FC9; color: #fff; }
+.marco-legendario { border-radius: 12px; box-shadow: 0 0 0 3px #7B4FC9; }
+.tarjeta-clara.legendario { border-color: #7B4FC9; }
+.banner-mil.captura { border-color: var(--oro, #C9A227); }
+/* informes pulsables */
+button.informe { display: block; width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+.detalle-informe { display: flex; flex-direction: column; gap: 8px; }
+.seccion-informe > b { display: block; margin-bottom: 4px; }
+.tabla-informe { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tabla-informe th, .tabla-informe td { padding: 3px 4px; border-bottom: 1px solid rgba(43, 29, 20, .15); text-align: right; }
+.tabla-informe th:first-child, .tabla-informe td:first-child { text-align: left; }
+#tabla-produccion .fila-est span, #tabla-produccion .fila-est b { white-space: nowrap; }
+/* 0.8: el recuadro de marchas (ahora también con los obreros que farmean) quedaba ENCIMA de las hojas y tapaba su título */
+.recuadro-marchas { z-index: 15; }
+
+/* ---------- 0.9 · Campamento (dibujos de Camachin), despedir, borrar defensa, informes vistosos, conquistadas ---------- */
+.campamento-ciudad { position: absolute; padding: 0; border: 0; background: none; cursor: pointer; z-index: 3; }
+.campamento-ciudad .edif { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; filter: drop-shadow(0 3px 0 rgba(0,0,0,.18)); }
+.campamento-ciudad .nivel, .hueco-camp .nivel { position: absolute; right: -3px; bottom: -3px; min-width: 18px; height: 18px; padding: 0 2px; border-radius: 9px; background: var(--pergamino); border: 2px solid var(--tinta); font: 700 11px/14px system-ui, sans-serif; text-align: center; z-index: 4; }
+.zona-campamento { display: flex; flex-direction: column; gap: 6px; }
+.resumen-campamento .datos { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.resumen-campamento .plazas { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.resumen-campamento .plazas img, .plazas-tropa img.ico-coste { width: 22px; height: 22px; }
+.aviso-exceso, .plazas-tropa.exceso .sub { color: var(--granate); }
+.campamento-vista { min-height: 280px; background: var(--hierba); }
+.mapa-campamento { position: relative; margin: 12px auto; flex: none; }
+.suelo-campamento { position: absolute; inset: 0; pointer-events: none; }
+.suelo-campamento .pieza-suelo { position: absolute; image-rendering: auto; }
+.hueco-camp { position: absolute; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 10px; }
+.hueco-camp.libre { border: 2.5px dashed rgba(60,45,25,.55); background: rgba(255,248,230,.25); }
+.hueco-camp.bloqueado { border: 2px dashed rgba(60,45,25,.18); cursor: default; }
+.hueco-camp .edif { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hueco-camp .mas-camp { font: 700 28px/1 system-ui, sans-serif; color: rgba(60,45,25,.6); }
+#rec-tropa img.ico-rec { width: 22px; height: 22px; } .recurso.agotado b { color: var(--granate); }
+img.ico-boton { width: 22px; height: 22px; pointer-events: none; }
+.botones-defensa { display: flex; gap: 6px; align-items: center; }
+.barra-carga { height: 10px; border: 2px solid var(--tinta); border-radius: 6px; overflow: hidden; background: var(--pergamino-oscuro); margin: 4px 0; }
+.barra-carga span { display: block; height: 100%; background: linear-gradient(90deg, var(--oro, #C9A227), #E2B83C); }
+/* informes */
+button.informe { display: flex; gap: 10px; align-items: flex-start; }
+.informe-cuerpo { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.informe-ico { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--pergamino-oscuro); border: 2px solid var(--tinta); display: grid; place-items: center; }
+.informe.bien .informe-ico { background: #DCEBD3; } .informe.mal .informe-ico { background: #F3D6C8; } .informe.info .informe-ico { background: #DCE3EE; }
+img.ico-informe { width: 26px; height: 26px; }
+.sello { align-self: flex-start; font: 700 10px/1 system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 3px 7px; border-radius: 999px; border: 1.5px solid currentColor; }
+.sello.bien { color: #2F6E2F; } .sello.mal { color: var(--granate); } .sello.info { color: var(--noche); }
+.informe-botin .coste-iconos { font-size: 13px; }
+.informe-banda { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; border: 2px solid var(--tinta); margin-bottom: 8px; }
+.informe-banda.bien { background: #DCEBD3; } .informe-banda.mal { background: #F3D6C8; } .informe-banda.info { background: #DCE3EE; }
+.vs { margin: 0 0 8px; } .vs-nombres { display: flex; align-items: center; gap: 8px; font-size: 14px; } .vs-nombres b { flex: 1; min-width: 0; } .vs-nombres b:last-child { text-align: right; }
+.vs-x { font: 900 13px/1 system-ui, sans-serif; color: var(--granate); }
+.vs-barra { display: flex; height: 12px; border: 2px solid var(--tinta); border-radius: 7px; overflow: hidden; margin-top: 4px; }
+.vs-tu { background: #3E8E3E; } .vs-el { background: var(--granate); }
+.informe-resumen { font-weight: 600; }
+/* estadísticas de conquistadas */
+.tabla-est.cinco .fila-est { grid-template-columns: 1.3fr .9fr .9fr 1fr .9fr 1.4fr; font-size: 13px; }
+.tabla-est.muchas { overflow-x: auto; } .tabla-est.muchas .fila-est { grid-template-columns: 1.6fr repeat(var(--cols), minmax(56px, 1fr)); font-size: 13px; min-width: max-content; }
+.tabla-est .cab-ico { display: flex; justify-content: flex-start; }
+.nota-ocultos { flex: none; font: 700 11px/1.1 system-ui, sans-serif; padding: 4px 8px; border-radius: 999px; border: 2px solid var(--tinta); background: var(--pergamino); color: var(--sub); cursor: pointer; }
+#escuela-max-obreros, .plazas-tropa { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
+#escuela-max-obreros > span { flex: 1; min-width: 160px; } #escuela-max-obreros img, .plazas-tropa > img { width: 32px; height: 32px; flex: none; }
+.plazas-tropa .datos { flex: 1; min-width: 0; }
+/* 0.10 · Información (inicio) y Cargar partida */
+.info-lista { display: grid; gap: 10px; margin: 6px 0 14px; }
+.info-seccion { background: rgba(255,255,255,.35); border: 1.5px solid var(--oro); border-radius: 12px; padding: 10px 12px; user-select: text; -webkit-user-select: text; }
+.info-seccion h3 { margin: 0 0 4px; font-size: 1.02rem; }
+.info-seccion p { margin: 4px 0; line-height: 1.38; }
+.dialogo.cargar-partida .botones { flex-wrap: wrap; }
+/* 0.10 · PWA: aviso «Hay una versión nueva» */
+.aviso-pwa { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); margin: 0 auto; max-width: 480px; z-index: 60; display: flex; gap: 10px; align-items: center; justify-content: space-between;
+  background: var(--noche); color: var(--pergamino); border: 2px solid var(--oro); border-radius: 14px; padding: 10px 12px; box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+.aviso-pwa[hidden] { display: none; }
